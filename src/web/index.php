@@ -6,19 +6,26 @@ ini_set('display_errors', true);
 $name = filter_input(INPUT_GET, 'name', FILTER_DEFAULT, FILTER_NULL_ON_FAILURE);
 $body = filter_input(INPUT_GET, 'body');
 
-// Sanity checks
-if (false === $name) {
-    throw new \InvalidArgumentException('Please provide a service name');
-}
+try {
+    // Sanity checks
+    if (false === $name) {
+        throw new \InvalidArgumentException('Please provide a service name');
+    }
 
-// Service selection
-$dirServices = __DIR__.'/../services';
-$services = array();
-foreach (glob($dirServices.'/*', GLOB_ONLYDIR) as $service) {
-    $services[] = basename($service);
-}
-if (!in_array($name, $services)) {
-    throw new \InvalidArgumentException('Unkown service - service='.$name);
+    // Service selection
+    $dirServices = __DIR__.'/../services';
+    $services = array();
+    foreach (glob($dirServices.'/*', GLOB_ONLYDIR) as $service) {
+        $services[] = basename($service);
+    }
+    if (!in_array($name, $services)) {
+        throw new \InvalidArgumentException('Unkown service - service='.$name);
+    }
+} catch (\Exception $e) {
+    if (isset($_GET['debug'])) {
+        throw $e;
+    }
+    $name = 'default';
 }
 
 // Execute service
