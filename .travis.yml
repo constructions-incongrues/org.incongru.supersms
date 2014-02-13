@@ -8,8 +8,7 @@ branches:
     - master
 
 install:
-  - curl -s http://getcomposer.org/installer | php
-  - ./composer.phar install --prefer-dist
+  - composer install --prefer-dist
   - echo "yes" | sudo add-apt-repository ppa:avsm/ppa-testing
   - sudo apt-get update -qq
   - sudo apt-get install -qq ocaml ocaml-native-compilers camlp4-extra opam
