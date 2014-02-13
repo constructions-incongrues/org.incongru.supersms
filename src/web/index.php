@@ -1,10 +1,23 @@
 <?php
-// PHP configuration
-ini_set('display_errors', true);
+// Response configuration
+header('Content-Type: text/plain; charset=utf-8');
 
-// Main controller
+// PHP configuration
+if (isset($_GET['debug'])) {
+    ini_set('display_errors', true);
+} else {
+    ini_set('display_errors', false);
+}
+
+// Dependencies
+require_once(__DIR__.'/../lib.php');
+
+// Filter input
 $name = filter_input(INPUT_GET, 'name', FILTER_DEFAULT, FILTER_NULL_ON_FAILURE);
 $body = filter_input(INPUT_GET, 'body');
+
+// Get services list
+$services = getServices(__DIR__.'/../services');
 
 try {
     // Sanity checks
@@ -13,12 +26,7 @@ try {
     }
 
     // Service selection
-    $dirServices = __DIR__.'/../services';
-    $services = array();
-    foreach (glob($dirServices.'/*', GLOB_ONLYDIR) as $service) {
-        $services[] = basename($service);
-    }
-    if (!in_array($name, $services)) {
+    if (!in_array($name, array_keys($services))) {
         throw new \InvalidArgumentException('Unkown service - service='.$name);
     }
 } catch (\Exception $e) {
@@ -29,10 +37,4 @@ try {
 }
 
 // Execute service
-$dirServices = __DIR__.'/../services';
-$serviceController = $dirServices.'/'.$name.'/index.php';
-if (!file_exists($serviceController)) {
-    throw new \RuntimeException('Missing service controller - service='.$name);
-
-}
-require($serviceController);
+require($services[$name]['controller']);

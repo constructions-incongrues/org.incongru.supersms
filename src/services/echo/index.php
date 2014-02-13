@@ -1,3 +1,2 @@
 <?php
-echo $name."\n";
-echo $body;
+echo sprintf("name: %s | body: %s", $name, $body);
