@@ -1,0 +1,7 @@
+/build.xml
+/.gitignore
+/build.xml
+/composer.*
+/vendor
+/etc
+/.git
