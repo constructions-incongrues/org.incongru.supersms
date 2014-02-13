@@ -24,3 +24,8 @@ function getServices($dirServices)
 
     return $services;
 }
+
+function fixOutput($ouput)
+{
+    return substr(trim($ouput), 0, 160);
+}

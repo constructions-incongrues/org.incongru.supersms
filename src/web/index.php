@@ -36,5 +36,7 @@ try {
     $name = 'default';
 }
 
-// Execute service
+// Execute service, pass output to fixOutput function which makes sure we are not sending "dangerous" content
+ob_start('fixOutput');
 require($services[$name]['controller']);
+ob_end_flush();
