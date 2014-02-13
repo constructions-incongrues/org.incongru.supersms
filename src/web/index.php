@@ -29,6 +29,7 @@ try {
 }
 
 // Execute service
+$dirServices = __DIR__.'/../services';
 $serviceController = $dirServices.'/'.$name.'/index.php';
 if (!file_exists($serviceController)) {
     throw new \RuntimeException('Missing service controller - service='.$name);
