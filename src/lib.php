@@ -27,5 +27,5 @@ function getServices($dirServices)
 
 function fixOutput($ouput)
 {
-    return substr(trim($ouput), 0, 160);
+    return substr(filter_var(trim($ouput), FILTER_SANITIZE_STRING), 0, 160);
 }
