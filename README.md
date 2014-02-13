@@ -1,4 +1,4 @@
-# Install
+# Install
 ```bash
 curl -s http://getcomposer.org/installer | php
 ./composer.phar install --prefer-dist
@@ -9,8 +9,8 @@ curl -s http://getcomposer.org/installer | php
 ant deploy -Dprofile=jeroboam
 ```
 
-# Cookbook
-## List available services
+# Cookbook
+## List available services
 ```
 ?name=help
 ```
@@ -20,10 +20,10 @@ ant deploy -Dprofile=jeroboam
 ?name=help&body=<service>
 ```
 
-## Call a service
+## Call a service
 ```
 ?name=<service>&body=<body>
 ```
 
-## Debug mode
+## Debug mode
 add ```&debug``` to query string
