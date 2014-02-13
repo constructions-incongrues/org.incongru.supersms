@@ -5,6 +5,7 @@ header('Content-Type: text/plain; charset=utf-8');
 // PHP configuration
 if (isset($_GET['debug'])) {
     ini_set('display_errors', true);
+    ini_set('html_errors', false);
 } else {
     ini_set('display_errors', false);
 }
