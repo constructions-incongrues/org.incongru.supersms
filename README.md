@@ -5,10 +5,10 @@ curl -s http://getcomposer.org/installer | php
 ```
 
 # Deploy
-## Automatic
+## Automatic
 Every commit to master is automatically deployed to http://supersms.incongru.org using Travis : https://travis-ci.org/constructions-incongrues/org.incongru.supersms
 
-## Manual
+## Manual
 ```bash
 ant deploy -Dprofile=jeroboam
 ```
