@@ -8,6 +8,7 @@ branches:
     - master
 
 install:
+  - curl -s http://getcomposer.org/installer | php
   - ./composer.phar install --prefer-dist
   - echo "yes" | sudo add-apt-repository ppa:avsm/ppa-testing
   - sudo apt-get update -qq
