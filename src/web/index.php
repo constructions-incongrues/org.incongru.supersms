@@ -14,30 +14,30 @@ if (isset($_GET['debug'])) {
 require_once(__DIR__.'/../lib.php');
 
 // Filter input
-$name = filter_input(INPUT_GET, 'name', FILTER_DEFAULT, FILTER_NULL_ON_FAILURE);
-$body = filter_input(INPUT_GET, 'body');
+$service = filter_input(INPUT_GET, 'service', FILTER_DEFAULT, FILTER_NULL_ON_FAILURE);
+$parameters = filter_input(INPUT_GET, 'parameters');
 
 // Get services list
 $services = getServices(__DIR__.'/../services');
 
 try {
     // Sanity checks
-    if (false === $name) {
+    if (false === $service) {
         throw new \InvalidArgumentException('Please provide a service name');
     }
 
     // Service selection
-    if (!in_array($name, array_keys($services))) {
-        throw new \InvalidArgumentException('Unkown service - service='.$name);
+    if (!in_array($service, array_keys($services))) {
+        throw new \InvalidArgumentException('Unkown service - service='.$service);
     }
 } catch (\Exception $e) {
     if (isset($_GET['debug'])) {
         throw $e;
     }
-    $name = 'default';
+    $service = 'default';
 }
 
 // Execute service, pass output to fixOutput function which makes sure we are not sending "dangerous" content
 ob_start('fixOutput');
-require($services[$name]['controller']);
+require($services[$service]['controller']);
 ob_end_flush();

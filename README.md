@@ -16,17 +16,17 @@ ant deploy -Dprofile=jeroboam
 # Cookbook
 ## List available services
 ```
-?name=help
+?service=help
 ```
 
 ## Obtain help for a service
 ```
-?name=help&body=<service>
+?service=help&parameters=<service>
 ```
 
 ## Call a service
 ```
-?name=<service>&body=<body>
+?service=<service>&parameters=<parameters>
 ```
 
 ## Debug mode

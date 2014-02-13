@@ -1,2 +1,2 @@
 <?php
-echo sprintf("name: %s | body: %s", $name, $body);
+echo sprintf("service: %s | parameters: %s", $name, $parameters);
